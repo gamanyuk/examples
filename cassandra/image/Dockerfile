@@ -128,4 +128,13 @@ VOLUME ["/$CASSANDRA_DATA"]
 # 9160: thrift service
 EXPOSE 7000 7001 7199 9042 9160
 
+
+
+RUN chmod 700 "${CASSANDRA_DATA}"
+RUN chown -c -R cassandra "${CASSANDRA_DATA}" 
+RUN chown -c -R cassandra /etc/cassandra
+
+
+USER cassandra
+
 CMD ["/sbin/dumb-init", "/bin/bash", "/run.sh"]
