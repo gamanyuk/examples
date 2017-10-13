@@ -131,8 +131,9 @@ EXPOSE 7000 7001 7199 9042 9160
 
 
 RUN chmod 700 "${CASSANDRA_DATA}"
+RUN chmod -R 0777 /etc/cassandra/
 RUN chown -c -R cassandra "${CASSANDRA_DATA}" 
-RUN chown -c -R cassandra /etc/cassandra
+RUN chown -c -R cassandra /etc/cassandra/
 
 
 USER cassandra
