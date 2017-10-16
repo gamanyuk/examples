@@ -134,7 +134,7 @@ EXPOSE 7000 7001 7199 9042 9160
 #RUN chmod -R 0777 /cassandra_data/data
 #RUN chmod -R 0777 /etc/cassandra/
 
-mkdir $CASSANDRA_LOGS
+RUN mkdir $CASSANDRA_LOGS
 
 RUN chown -c -R cassandra $CASSANDRA_LOGS
 RUN chown -c -R cassandra $CASSANDRA_CONF
