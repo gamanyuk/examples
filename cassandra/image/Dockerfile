@@ -150,6 +150,6 @@ RUN chown -c -R cassandra $CASSANDRA_HOME
 
 
 
-USER 1001
+USER cassandra
 
 CMD ["/sbin/dumb-init", "/bin/bash", "/run.sh"]
