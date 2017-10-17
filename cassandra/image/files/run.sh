@@ -173,8 +173,6 @@ fi
 
 export CLASSPATH=/kubernetes-cassandra.jar
 
-whoami
+#su cassandra -c "$CASSANDRA_HOME/bin/cassandra -f"
 
-su cassandra -c "$CASSANDRA_HOME/bin/cassandra -f"
-
-#$CASSANDRA_HOME/bin/cassandra -f
+$CASSANDRA_HOME/bin/cassandra -f
