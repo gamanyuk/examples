@@ -120,8 +120,12 @@ RUN set -e && echo 'debconf debconf/frontend select Noninteractive' | debconf-se
 
 
 
-RUN chown -c -R cassandra $CASSANDRA_DATA
-RUN chown -c -R cassandra /cassandra_data/data
+#RUN chown -c -R cassandra $CASSANDRA_DATA
+#RUN chown -c -R cassandra /cassandra_data/data
+
+
+RUN chgrp -R 0 $CASSANDRA_DATA && \
+    chmod -R g=u $CASSANDRA_DATA
 
 
 VOLUME ["/$CASSANDRA_DATA"]
@@ -137,19 +141,29 @@ EXPOSE 7000 7001 7199 9042 9160
 
 #RUN chmod -R 0777  "${CASSANDRA_DATA}"
 #RUN chmod -R 0777 /cassandra_data/data
-RUN chmod -R 0777 /etc/cassandra/
+#RUN chmod -R 0777 /etc/cassandra/
 
 RUN mkdir $CASSANDRA_LOGS
 RUN mkdir $CASSANDRA_HOME/logs
 
-RUN chown -c -R cassandra $CASSANDRA_LOGS
-RUN chown -c -R cassandra $CASSANDRA_CONF
-RUN chown -c -R cassandra $CASSANDRA_HOME
+
+RUN chgrp -R 0 $CASSANDRA_LOGS && \
+    chmod -R g=u $CASSANDRA_LOGS
+
+RUN chgrp -R 0 $CASSANDRA_CONF && \
+    chmod -R g=u $CASSANDRA_CONF
+
+RUN chgrp -R 0 $CASSANDRA_HOME && \
+    chmod -R g=u $CASSANDRA_HOME
+
+#RUN chown -c -R cassandra $CASSANDRA_LOGS
+#RUN chown -c -R cassandra $CASSANDRA_CONF
+#RUN chown -c -R cassandra $CASSANDRA_HOME
 #RUN chown -c -R cassandra $CASSANDRA_DATA
 #RUN chown -c -R cassandra /cassandra_data/data
 
 
 
-USER cassandra
+USER 1001
 
 CMD ["/sbin/dumb-init", "/bin/bash", "/run.sh"]
