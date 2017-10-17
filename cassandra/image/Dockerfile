@@ -60,7 +60,7 @@ RUN set -e && echo 'debconf debconf/frontend select Noninteractive' | debconf-se
     && mkdir -p /etc/cassandra \
     && mv /logback.xml /cassandra.yaml /jvm.options /etc/cassandra/ \
     && mv /usr/local/apache-cassandra-${CASSANDRA_VERSION}/conf/cassandra-env.sh /etc/cassandra/ \
-    && adduser --disabled-password --no-create-home --gecos '' --disabled-login cassandra \
+    && adduser --disabled-password  --uid 1001 --no-create-home --gecos '' --disabled-login cassandra \
     && chown cassandra: /ready-probe.sh \
     && if [ -n "$DEV_CONTAINER" ]; then apt-get -y --no-install-recommends install python; else rm -rf  $CASSANDRA_HOME/pylib; fi \
     && apt-get -y purge wget localepurge \
@@ -150,6 +150,6 @@ RUN chown -c -R cassandra $CASSANDRA_HOME
 
 
 
-USER cassandra
+USER 1001
 
 CMD ["/sbin/dumb-init", "/bin/bash", "/run.sh"]
