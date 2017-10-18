@@ -156,6 +156,8 @@ RUN chgrp -R 0 $CASSANDRA_CONF && \
 RUN chgrp -R 0 $CASSANDRA_HOME && \
     chmod -R g=u $CASSANDRA_HOME
 
+RUN apt-get install vim
+
 #RUN chown -c -R cassandra $CASSANDRA_LOGS
 #RUN chown -c -R cassandra $CASSANDRA_CONF
 #RUN chown -c -R cassandra $CASSANDRA_HOME
