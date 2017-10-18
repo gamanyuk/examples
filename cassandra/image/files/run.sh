@@ -14,6 +14,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+echo CASSANDRA_SEEDS0 ${CASSANDRA_SEEDS}
+
 set -e
 CASSANDRA_CONF_DIR=/etc/cassandra
 CASSANDRA_CFG=$CASSANDRA_CONF_DIR/cassandra.yaml
