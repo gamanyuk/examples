@@ -62,10 +62,10 @@ RUN set -e && echo 'debconf debconf/frontend select Noninteractive' | debconf-se
     && mv /usr/local/apache-cassandra-${CASSANDRA_VERSION}/conf/cassandra-env.sh /etc/cassandra/ \
     && adduser --disabled-password  --uid 1001 --no-create-home --gecos '' --disabled-login cassandra \
     && chown cassandra: /ready-probe.sh \
-    && if [ -n "$DEV_CONTAINER" ]; then apt-get -y --no-install-recommends install python; else rm -rf  $CASSANDRA_HOME/pylib; fi \
-    && apt-get -y purge wget localepurge \
-    && apt-get -y autoremove \
     && wget https://github.com/gamanyuk/kubernetes-examples/blob/master/cassandra/cassandra-lucene-index/cassandra-lucene-index-builder-3.0.14.1-RC1-SNAPSHOT.jar?raw=true  -O $CASSANDRA_HOME/lib/cassandra-lucene-index-builder-3.0.14.1-RC1-SNAPSHOT.jar \
+	&& if [ -n "$DEV_CONTAINER" ]; then apt-get -y --no-install-recommends install python; else rm -rf  $CASSANDRA_HOME/pylib; fi \
+    && apt-get -y purge wget localepurge \
+    && apt-get -y autoremove \    
 	&& apt-get clean \
     && rm -rf \
         $CASSANDRA_HOME/*.txt \
