@@ -118,7 +118,8 @@ RUN set -e && echo 'debconf debconf/frontend select Noninteractive' | debconf-se
         /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/plugin.jar \
         /usr/lib/jvm/java-8-openjdk-amd64/man
 
-
+# installing lucene index
+RUN wget https://github.com/gamanyuk/kubernetes-examples/blob/master/cassandra/cassandra-lucene-index/cassandra-lucene-index-builder-3.0.14.1-RC1-SNAPSHOT.jar?raw=true  -O $CASSANDRA_HOME/lib/cassandra-lucene-index-builder-3.0.14.1-RC1-SNAPSHOT.jar
 
 #RUN chown -c -R cassandra $CASSANDRA_DATA
 #RUN chown -c -R cassandra /cassandra_data/data
